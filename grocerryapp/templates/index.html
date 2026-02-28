@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Grocery List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Welcome to Grocery App</h1>
-    
+    <div class="container mt-5">
+        <header class="text-center mb-4">
+            <h1 class="display-4">🛒 My Grocery List</h1>
+        </header>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- CRUD Form Section -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        Add New Item
+                    </div>
+                    <div class="card-body">
+                        <!-- Form will be added here -->
+                        <p>Form implementation goes here.</p>
+                    </div>
+                </div>
+
+                <!-- Grocery List Section -->
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        Items
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <!-- Dynamic list items will be rendered here -->
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            A sample item
+                            <span class="badge bg-primary rounded-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Another item
+                            <span class="badge bg-primary rounded-pill">2</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
