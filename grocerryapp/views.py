@@ -7,7 +7,7 @@ def index(request):
     context = {
         'items': items,
     }
-    return render(request, 'grocery/index.html', context)
+    return render(request, 'index.html', context)
 
 
 def toggle_completed(request, item_id):
@@ -17,4 +17,4 @@ def toggle_completed(request, item_id):
         item.completed = not item.completed
         item.save()
 
-    return redirect('grocery:index')
+    return redirect('grocerryapp:index')

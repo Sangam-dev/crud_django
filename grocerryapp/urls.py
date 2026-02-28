@@ -1,7 +1,9 @@
-from django.urls import path,include
+from django.urls import path
 from . import views
 
-urlpatterns = [
-    path('',views.index,name='index'),
+app_name = 'grocerryapp'
 
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('toggle/<int:item_id>/', views.toggle_completed, name='toggle'),
 ]
