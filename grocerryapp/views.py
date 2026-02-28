@@ -1,7 +1,11 @@
-import django
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import GroceryItem
 
-# Create your views here.
-def home(request):
-    return render(request,'index.html')
+
+def index(request):
+    """Display all grocery items"""
+    items = GroceryItem.objects.all()
+    context = {
+        'items': items,
+    }
+    return render(request, 'index.html', context)
