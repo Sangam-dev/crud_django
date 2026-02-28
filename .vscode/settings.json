@@ -1,10 +1,12 @@
 {
   "python.pythonPath": "/usr/bin/python3",
-  "python.languageServer": "Pylance",
+  "python.languageServer": "Jedi",
   "emmet.includeLanguages": {
-    "django-html":"html"
+    "django-html": "html"
   },
   "[html][django-html]": {
     "editor.defaultFormatter": "monosans.djlint"
-  }
+  },
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true
 }

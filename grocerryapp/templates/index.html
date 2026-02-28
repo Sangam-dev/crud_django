@@ -4,42 +4,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>grocerryapp Bud - Django</title>
+    <title>GrocerryApp Bud - Django</title>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="{% static 'grocerryapp/css/global.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'grocerryapp/css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'grocerryapp/css/single-item.css' %}" />
     <link rel="stylesheet" href="{% static 'grocerryapp/css/items.css' %}" />
   </head>
+
   <body>
     <section class="section-center">
-      <!-- Items List -->
-<!-- Items List -->
-<pre>
-<div class="items">
-  {% for item in items %}
-      <div class="single-item">
-          <form method="POST" action="{% url 'grocerryapp:toggle' item.id %}">
+      <h2 style="text-align: center; margin-bottom: 1.5rem;">Grocery Bud</h2>
+      <form method="POST" action="{% url 'grocerryapp:add' %}" style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 2rem;">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="e.g. eggs" required style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; border: 1px solid #ccc; flex: 1;" />
+        <button type="submit" style="cursor: pointer; color: #fff; background: #06b6d4; border: transparent; border-radius: 0.25rem; padding: 0.375rem 0.75rem; font-size: 1rem;">Add Item</button>
+      </form>
+
+      <div class="items">
+
+        {% for item in items %}
+          <div class="single-item">
+
+            <!-- Toggle Completed -->
+            <form method="POST" action="{% url 'grocerryapp:toggle' item.id %}">
               {% csrf_token %}
-              <input type="checkbox"
-                      {% if item.completed %}checked{% endif %}
-                      onchange="this.form.submit()" />
-          </form>
-          <p style="text-decoration: {% if item.completed %}line-through{% else %}none{% endif %}">{{ item.name }}</p>
-          <a href="#" class="btn icon-btn edit-btn">
+              <input
+                type="checkbox"
+                {% if item.completed %}checked{% endif %}
+                onchange="this.form.submit()"
+              />
+            </form>
+
+            <!-- Item Name -->
+            <p
+              style="text-decoration: {% if item.completed %}line-through{% else %}none{% endif %}"
+            >
+              {{ item.name }}
+            </p>
+
+            <!-- Edit Button -->
+            <a href="{% url 'grocerryapp:edit' item.id %}" class="btn icon-btn edit-btn" style="color: #fff; background: #06b6d4; border-radius: 0.25rem; padding: 0.375rem 0.75rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
               <i class="fa-regular fa-pen-to-square"></i>
-          </a>
-          <button class="btn icon-btn remove-btn" type="submit">
-              <i class="fa-regular fa-trash-can"></i>
-          </button>
+            </a>
+
+            <!-- Delete -->
+            <form
+              method="POST"
+              action="{% url 'grocerryapp:delete' item.id %}"
+              style="display: inline"
+            >
+              {% csrf_token %}
+              <button type="submit" class="btn icon-btn remove-btn">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </form>
+
+          </div>
+
+        {% empty %}
+          <p style="text-align: center; color: #888;">
+            No items yet. Add one above!
+          </p>
+        {% endfor %}
+
       </div>
-  {% empty %}
-      <p style="text-align: center; color: #888;">No items yet. Add one above!</p>
-  {% endfor %}
-</div>
-</pre>
+
     </section>
   </body>
 </html>
